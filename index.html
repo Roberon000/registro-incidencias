@@ -1,91 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Incidencias</title>
-    <style>
-        /* Estilo general */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+const nodemailer = require('nodemailer');
 
-        /* Estilo del formulario */
-        form {
-            width: 100%;
-            max-width: 400px;
-            padding: 20px;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+// Configurar transporte SMTP para Gmail
+const transporter = nodemailer.createTransport({
+  service: 'gmail', // Indica que usamos Gmail
+  auth: {
+    user: 'tu_correo@gmail.com', // Reemplaza con tu correo de Gmail
+    pass: 'tu_contraseña_o_contraseña_de_aplicación' // Contraseña o contraseña de aplicación
+  }
+});
 
-        /* Estilo de etiquetas y campos */
-        label {
-            display: block;
-            margin-top: 10px;
-            text-align: left;
-        }
+// Configuración del correo
+const mailOptions = {
+  from: 'tu_correo@gmail.com', // Remitente
+  to: 'destinatario@correo.com', // Destinatario
+  subject: 'Nueva Incidencia', // Asunto del correo
+  text: 'Este es el contenido del correo.' // Contenido del correo
+};
 
-        input, textarea, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        textarea {
-            resize: none;
-        }
-
-        /* Estilo del botón */
-        button {
-            background-color: orange;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 15px;
-        }
-
-        button:hover {
-            background-color: #e69500;
-        }
-    </style>
-</head>
-<body>
-    <form id="incidentForm">
-        <h1>Registro de Incidencias</h1>
-        <label for="username">Nombre de Usuario:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="zone">Zona de Planta:</label>
-        <input type="text" id="zone" name="zone" required>
-
-        <label for="incident">Descripción de la Incidencia:</label>
-        <textarea id="incident" name="incident" rows="4" required></textarea>
-
-        <label for="location">Localización:</label>
-        <input type="text" id="location" name="location" required>
-
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="image">Adjuntar Imagen:</label>
-        <input type="file" id="image" name="image" accept="image/*">
-
-        <button type="submit">Enviar</button>
-    </form>
-</body>
-</html>
+// Enviar el correo
+transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
+    console.log('Error al enviar el correo:', error);
+  } else {
+    console.log('Correo enviado:', info.response);
+  }
+});
