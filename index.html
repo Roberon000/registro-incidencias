@@ -5,45 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Incidencias</title>
     <style>
+        /* Estilo general */
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
             background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
+        /* Estilo del formulario */
         form {
+            width: 100%;
             max-width: 400px;
-            margin: auto;
             padding: 20px;
             background: white;
             border: 1px solid #ccc;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
+
+        /* Estilo de etiquetas y campos */
         label {
             display: block;
             margin-top: 10px;
+            text-align: left;
         }
+
         input, textarea, button {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
         }
+
+        textarea {
+            resize: none;
+        }
+
+        /* Estilo del botón */
         button {
-            background-color: #007BFF;
+            background-color: orange;
             color: white;
-            cursor: pointer;
             border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
         }
+
         button:hover {
-            background-color: #0056b3;
+            background-color: #e69500;
         }
     </style>
 </head>
 <body>
-    <h1 style="text-align: center;">Registro de Incidencias</h1>
     <form id="incidentForm">
+        <h1>Registro de Incidencias</h1>
         <label for="username">Nombre de Usuario:</label>
         <input type="text" id="username" name="username" required>
 
